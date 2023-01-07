@@ -1,0 +1,167 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Textures/options_background.png" type="Texture" id=1]
+[ext_resource path="res://Textures/fog.png" type="Texture" id=2]
+[ext_resource path="res://Textures/MARACAIBO.png" type="Texture" id=3]
+[ext_resource path="res://scripts/HellowMessage.cs" type="Script" id=4]
+[ext_resource path="res://Textures/Buttons.png" type="Texture" id=5]
+[ext_resource path="res://Textures/gui/pressed.png" type="Texture" id=6]
+[ext_resource path="res://Textures/gui/hover.png" type="Texture" id=7]
+[ext_resource path="res://scripts/gdbutton.gd" type="Script" id=8]
+[ext_resource path="res://Sounds/minecraft_click.mp3" type="AudioStream" id=9]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "flicker"
+length = 2.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 2.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 1.7, 1.7 ), Vector2( 1.5, 1.5 ) ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="menu" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="menu"]
+anchor_right = 1.0
+anchor_bottom = 0.451
+margin_top = 30.0
+margin_bottom = -94.6
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="menu"]
+anchor_left = 0.736
+anchor_top = 0.319
+anchor_right = 0.868
+anchor_bottom = 0.319
+margin_left = -105.664
+margin_top = 50.6
+margin_right = 44.1681
+margin_bottom = 106.6
+rect_rotation = -23.8
+rect_scale = Vector2( 1.5, 1.5 )
+bbcode_enabled = true
+bbcode_text = "[center][color=black][font=Fonts/minecraft_font.tres]VERGACIOOOON!!!![/font]
+"
+text = "VERGACIOOOON!!!!
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="menu/RichTextLabel2"]
+anims/RESET = SubResource( 3 )
+anims/flicker = SubResource( 2 )
+script = ExtResource( 4 )
+
+[node name="yellow" type="RichTextLabel" parent="menu/RichTextLabel2"]
+anchor_left = 0.736
+anchor_top = 0.319
+anchor_right = 0.868
+anchor_bottom = 0.319
+margin_left = -162.422
+margin_top = -18.4485
+margin_right = -12.5897
+margin_bottom = 37.5515
+bbcode_enabled = true
+bbcode_text = "[center][color=yellow][font=Fonts/minecraft_font.tres]VERGACIOOOON!!!![/font]
+"
+text = "VERGACIOOOON!!!!
+"
+
+[node name="version" type="RichTextLabel" parent="menu"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -30.0
+bbcode_enabled = true
+bbcode_text = "[font=Fonts/minecraft_font.tres]version b1.0.0[/font]"
+text = "version b1.0.0"
+
+[node name="Play" type="TextureButton" parent="menu"]
+margin_left = 288.0
+margin_top = 267.0
+margin_right = 765.0
+margin_bottom = 307.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+expand = true
+flip_h = true
+script = ExtResource( 8 )
+
+[node name="Label" type="RichTextLabel" parent="menu/Play"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -33.0
+mouse_filter = 1
+bbcode_enabled = true
+bbcode_text = "[center][font=Fonts/minecraft_font.tres]jugar[/font]"
+text = "jugar"
+
+[node name="Options" type="TextureButton" parent="menu"]
+margin_left = 288.0
+margin_top = 320.0
+margin_right = 765.0
+margin_bottom = 360.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+expand = true
+flip_h = true
+script = ExtResource( 8 )
+
+[node name="Label" type="RichTextLabel" parent="menu/Options"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -33.0
+mouse_filter = 1
+bbcode_enabled = true
+bbcode_text = "[center][font=Fonts/minecraft_font.tres]opciones (mentira no hay)[/font]"
+text = "opciones (mentira no hay)"
+
+[node name="Sound" type="AudioStreamPlayer" parent="menu"]
+stream = ExtResource( 9 )

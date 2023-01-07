@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/minecraft_click.mp3-de993996ae0cc55a1344cf074a5e31f2.mp3str"
+
+[deps]
+
+source_file="res://Sounds/minecraft_click.mp3"
+dest_files=[ "res://.import/minecraft_click.mp3-de993996ae0cc55a1344cf074a5e31f2.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/steve.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/ChunkGenerator.cs" type="Script" id=4]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="steve" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 59, 0 )
+
+[node name="Chunks" type="Spatial" parent="."]
+script = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+margin_right = 511.0
+margin_bottom = 40.0
+bbcode_enabled = true
+tab_size = 10
+fit_content_height = true
+scroll_active = false
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.92875, 0.118635, 0.351211, -0.197569, 0.960051, 0.198162, -0.313671, -0.253431, 0.915086, 0, 0.333922, 0 )
+visible = false

@@ -80,21 +80,63 @@ public class ChunkGenerator : Spatial
         }
     }
 
-    public void Destroy(Vector3 search, StaticBody chunk){
+    public void Destroy(Vector3 search){
         int[] cord = new int[]{Convert.ToInt32(Mathf.Floor(search.x / 16)), Convert.ToInt32(Mathf.Floor(search.z / 16))};
         int[] inner = new int[]{Convert.ToInt32(search.x) - cord[0]*16, Convert.ToInt32(search.y), Convert.ToInt32(search.z) - cord[1]*16};
         
         terrainData[cord[0] + renderOffset, cord[1] + renderOffset].data[inner[0], inner[1], inner[2], 0] = 0;
 
-        chunk.EmitSignal("RenderMesh");
+        GetChunk(new Vector2(cord[0], cord[1])).StartRender();
+
+        if (inner[2] == 15){
+            try { GetChunk(new Vector2(cord[0], cord[1]+1)).StartRender();}
+            catch {}
+        }
+        if (inner[2] == 0){
+            try { GetChunk(new Vector2(cord[0], cord[1]-1)).StartRender();}
+            catch {}
+        }
+
+        if (inner[0] == 15){
+            try { GetChunk(new Vector2(cord[0]+1, cord[1])).StartRender();}
+            catch {}
+        }
+        if (inner[0] == 0){
+            try { GetChunk(new Vector2(cord[0]-1, cord[1])).StartRender();}
+            catch {}
+        }
     }
 
-    public void Place(Vector3 search, Chunk chunk){
+    public void Place(Vector3 search, string name){
         int[] cord = new int[]{Convert.ToInt32(Mathf.Floor(search.x / 16)), Convert.ToInt32(Mathf.Floor(search.z / 16))};
         int[] inner = new int[]{Convert.ToInt32(search.x) - cord[0]*16, Convert.ToInt32(search.y), Convert.ToInt32(search.z) - cord[1]*16};
 
-        chunk.SaveBoxel(inner[0],inner[1],inner[2],"grass");
+        Chunk chunk = GetChunk(new Vector2(cord[0], cord[1]));
+        chunk.SaveBoxel(inner[0],inner[1],inner[2], name);
+        chunk.StartRender();
 
-        chunk.EmitSignal("RenderMesh");
+        if (inner[2] == 15){
+            try { GetChunk(new Vector2(cord[0], cord[1]+1)).StartRender();}
+            catch {}
+        }
+        if (inner[2] == 0){
+            try { GetChunk(new Vector2(cord[0], cord[1]-1)).StartRender();}
+            catch {}
+        }
+
+        if (inner[0] == 15){
+            try { GetChunk(new Vector2(cord[0]+1, cord[1])).StartRender();}
+            catch {}
+        }
+        if (inner[0] == 0){
+            try { GetChunk(new Vector2(cord[0]-1, cord[1])).StartRender();}
+            catch {}
+        }
+
+        
+    }
+
+    public Chunk GetChunk(Vector2 name){
+        return GetNode("Chunk[" + name.x + "," + name.y + "]").GetChild<Chunk>(0);;
     }
 }

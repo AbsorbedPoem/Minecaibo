@@ -1,0 +1,10 @@
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\bin\Debug\mc2d.deps.json
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\bin\Debug\mc2d.dll
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\bin\Debug\mc2d.pdb
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\obj\Debug\mc2d.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\obj\Debug\mc2d.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\obj\Debug\mc2d.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\obj\Debug\mc2d.AssemblyInfo.cs
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\obj\Debug\mc2d.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\obj\Debug\mc2d.dll
+C:\Users\Usuario\Documents\Godot\Minecaibo\Minecaibo\.mono\temp\obj\Debug\mc2d.pdb

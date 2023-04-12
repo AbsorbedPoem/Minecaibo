@@ -15,11 +15,35 @@ script = ExtResource( 4 )
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+[node name="version" type="RichTextLabel" parent="Control"]
 margin_right = 511.0
-margin_bottom = 40.0
+margin_bottom = 27.0
 bbcode_enabled = true
+bbcode_text = "[font=Fonts/minecraft_font.tres]Minecaibo b1.0.0[/font]"
 tab_size = 10
+text = "Minecaibo b1.0.0"
+fit_content_height = true
+scroll_active = false
+
+[node name="coordinates" type="RichTextLabel" parent="Control"]
+margin_top = 27.0
+margin_right = 511.0
+margin_bottom = 54.0
+bbcode_enabled = true
+bbcode_text = "[font=Fonts/minecraft_font.tres](%d, %d, %d)[/font]"
+tab_size = 10
+text = "(%d, %d, %d)"
+fit_content_height = true
+scroll_active = false
+
+[node name="block_selected" type="RichTextLabel" parent="Control"]
+margin_top = 54.0
+margin_right = 511.0
+margin_bottom = 81.0
+bbcode_enabled = true
+bbcode_text = "[font=Fonts/minecraft_font.tres](%d, %d, %d)[/font]"
+tab_size = 10
+text = "(%d, %d, %d)"
 fit_content_height = true
 scroll_active = false
 

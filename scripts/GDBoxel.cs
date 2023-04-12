@@ -51,11 +51,11 @@ public class GDBoxel
             addTri(st,BTR,FTR,BTL, faces[0,0], faces[0,1], true);}
 
         try{ if (currentChunk.data[x,y-1,z,0] == 0){
-            addTri(st,FBL,BBL,FBR, faces[2,0], faces[2,1]); //bottom
-            addTri(st,BBR,FBR,BBL, faces[2,0], faces[2,1], true);}
+            addTri(st,BBR,BBL,FBR, faces[2,0], faces[2,1]); //bottom
+            addTri(st,FBL,FBR,BBL, faces[2,0], faces[2,1], true);}
         } catch (System.IndexOutOfRangeException) {
-            addTri(st,FBL,BBL,FBR, faces[2,0], faces[2,1]);
-            addTri(st,BBR,FBR,BBL, faces[2,0], faces[2,1], true);
+            addTri(st,BBR,BBL,FBR, faces[2,0], faces[2,1]);
+            addTri(st,FBL,FBR,BBL, faces[2,0], faces[2,1], true);
         }
     }
 

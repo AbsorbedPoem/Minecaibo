@@ -16,6 +16,8 @@ onready var raycast = $Head/RayCast
 onready var bounding_box = $"selection box"
 onready var chunk_gen = get_parent().get_node("Chunks")
 
+var item_index = 0;
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -28,7 +30,7 @@ func _input(event):
 
 func _process(_delta):
 	var format_string = "[font=Fonts/minecraft_font.tres](%d, %d, %d)[/font]"
-	get_parent().get_node("Control").get_node("RichTextLabel").bbcode_text = format_string % [int(floor(translation.x)), int(floor(translation.y)), int(floor(translation.z))]
+	get_parent().get_node("Control").get_node("coordinates").bbcode_text = format_string % [int(floor(translation.x)), int(floor(translation.y)), int(floor(translation.z))]
 
 func _physics_process(delta):
 	direction = Vector3()
@@ -66,20 +68,47 @@ func _physics_process(delta):
 	velocity = velocity.linear_interpolate(direction * speed, acceleration * delta) 
 	velocity = move_and_slide(velocity, Vector3.UP)
 
+	
+
+	# Raycast
+
 	var col = raycast.get_collision_point() - raycast.get_collision_normal() * 0.1;
-
 	var raycast_block_index = Vector3(floor(col.x), floor(col.y), floor(col.z))
-
-	var colput = raycast.get_collision_point() + raycast.get_collision_normal() * 0.1;
-
-	var raycast_put_block_index = Vector3(floor(colput.x), floor(colput.y), floor(colput.z))
 
 	bounding_box.visible = raycast.is_colliding();
 	bounding_box.global_translation = raycast_block_index;
+
+	var items = [
+		"dirt",
+		"grass",
+		"cobblestone",
+		"oak_wood",
+		"oak_leaves",
+		"bedrock"
+	]
+
+	if Input.is_action_just_pressed("mouse_weel_up"):
+		item_index += 1
+		if item_index >= len(items):
+			item_index = 0
+	elif Input.is_action_just_pressed("mouse_weel_down"):
+		item_index -= 1
+		if item_index < 0:
+			item_index = len(items) - 1
+			
+	var format_string = "[font=Fonts/minecraft_font.tres]Minecraft: %s[/font]"
+	get_parent().get_node("Control").get_node("block_selected").bbcode_text = format_string % [items[item_index]]
+
+	if Input.is_action_just_pressed("ui_F3"):
+		get_parent().get_node("Control").visible = !get_parent().get_node("Control").visible;
 	
 	if (Input.is_action_just_pressed("attack") and raycast.get_collider() != null):
-		chunk_gen.Destroy(raycast_block_index, raycast.get_collider().get_parent())
+		chunk_gen.Place(raycast_block_index, "air")
 
-	if (Input.is_action_just_pressed("action") and raycast.get_collider() != null):
-		chunk_gen.Place(raycast_put_block_index, raycast.get_collider().get_parent())
+	elif (Input.is_action_just_pressed("action") and raycast.get_collider() != null):
+		
+		var colput = raycast.get_collision_point() + raycast.get_collision_normal() * 0.1;
+		var raycast_put_block_index = Vector3(floor(colput.x), floor(colput.y), floor(colput.z))
+
+		chunk_gen.Place(raycast_put_block_index, items[item_index])
 		

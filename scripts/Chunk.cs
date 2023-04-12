@@ -121,7 +121,13 @@ public class Chunk : MeshInstance
     }
 
     public void SaveBoxel(int x, int y, int z, string block_name){
-        chunkData.data[x,y,z,0] = 1; // 1 for solid
-        chunkData.data[x,y,z,1] = Minecraft.GetID(block_name);
+        if (block_name == "air"){
+            chunkData.data[x,y,z,0] = 0;
+            chunkData.data[x,y,z,1] = 0;
+        }
+        else {
+            chunkData.data[x,y,z,0] = 1; // 1 for solid
+            chunkData.data[x,y,z,1] = Minecraft.GetID(block_name);
+        }
     }
 }
